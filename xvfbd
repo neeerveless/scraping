@@ -1,0 +1,20 @@
+#!/bin/bash
+#description: Starts xvfb on display 10
+
+XVFB_BIN=/usr/bin/Xvfb
+XVFB_LOG=./var/log/xvfb
+
+case "$1" in
+    start)
+        $XVFB_BIN :10 1>$XVFB_LOG/log.log 2>&1 &
+        echo "Running Xvfb"
+        ;;
+    stop)
+        killall Xvfb
+        echo "Stopped Xvfb"
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+esac
+exit 0

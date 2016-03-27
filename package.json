@@ -1,0 +1,16 @@
+{
+  "name": "scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export DISPLAY=localhost:10 && node index.js"
+  },
+  "author": "MSHR",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-standalone": "^5.1.0",
+    "webdriverio": "^4.0.5"
+  }
+}

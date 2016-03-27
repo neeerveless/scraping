@@ -1,0 +1,28 @@
+#!/bin/bash
+#description: Starts selenium-standalone
+
+SELENIUM_BIN=./node_modules/selenium-standalone/bin/selenium-standalone
+SELENIUM_PID=./var/run/selenium.pid
+SELENIUM_LOG=./var/log/selenium
+
+case "$1" in
+  start)
+    if [ -f $SELENIUM_PID ]; then
+      echo "Selenium is already started"
+      exit 1
+    fi
+    $SELENIUM_BIN start 2>$SELENIUM_LOG/error.log &
+    echo "Selenium started" >> $SELENIUM_LOG/log.log
+    echo $! > $SELENIUM_PID
+    ;;
+  stop)
+    kill `cat $SELENIUM_PID`
+    rm -f $SELENIUM_PID
+    echo "Selenium stopped"
+    echo "Selenium stopped" >> $SELENIUM_LOG/log.log
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+esac
+exit 0
